@@ -18,15 +18,15 @@ class BlogPostController extends Controller
         $countpost = blog_post::getpostnumber();
 
         $getpage = $page+1;
+        $pagenow = $page+1;
         $backpage = $page-1;
         if ($backpage < 1) {
            $backpage = 0;
         }
        
-       
         $total = count($countpost) / 5;
        
-        if ($total > 0) {
+        if ($total > 1) {
            $totalpage = ceil($total) - 1;
         }
        
@@ -34,7 +34,7 @@ class BlogPostController extends Controller
             $getpage = $totalpage;
         }
 
-        return view('blog/index',compact('post','backpage','totalpage','getpage')); 
+        return view('blog/index',compact('post','backpage','totalpage','getpage','pagenow')); 
     } 
 
  

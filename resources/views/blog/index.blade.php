@@ -84,7 +84,7 @@
                             
                             <li class="page-item"><a class="page-link" href="{{$backpage}}">Back</a></li>
 
-                            <li class="page-item"><a class="page-link" readonly>{{$getpage}}</a></li>
+                            <li class="page-item"><a class="page-link" readonly>{{$pagenow}}</a></li>
 
                             <li class="page-item"><a class="page-link" href="{{$getpage}}">Next</a></li>
                             <li class="page-item"><a class="page-link" href="{{$totalpage}}">Older</a></li>
