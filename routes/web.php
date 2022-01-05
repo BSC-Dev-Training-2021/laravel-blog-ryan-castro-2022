@@ -24,7 +24,7 @@ use App\Http\Controllers\BlogPostCommentsController;
 //     return view('welcome');
 // });
 
-
+route::resource('/categorydelete','CategoryTypesController');
 
 Route::get('/create', [CategoryTypesController::class, 'shows']);
 
@@ -39,9 +39,13 @@ Route::post('/article', 'BlogPostCommentsController@storecomment');
 Route::get('/article/{page}', [BlogPostCategoriesController::class, 'show_categories']);
 
 
+Route::get('/category', [CategoryTypesController::class, 'category']);
 
 
+Route::post('/categorycreate', 'CategoryTypesController@storecategory');
 
+
+// Route::delete('/categories', 'CategoryTypesController@destroy');
 
 
 // Route::get('/posts/{post}',[PostController::class, 'get']);

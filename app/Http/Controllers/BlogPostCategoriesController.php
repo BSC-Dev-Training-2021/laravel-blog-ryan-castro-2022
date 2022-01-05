@@ -22,5 +22,13 @@ class BlogPostCategoriesController extends Controller
         return view('blog/article',compact('post_categories','article','comment')); 
     } 
 
+    // public function categories($id){
+
+    //     $categories = blog_post_categories::show_categories($id);
+
+
+        
+    // } 
+
 
 }

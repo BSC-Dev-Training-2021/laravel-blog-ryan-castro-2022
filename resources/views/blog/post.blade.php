@@ -34,7 +34,7 @@
                                 Admin
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                <li><button type="button" class="btn float-right ml-1" data-toggle="modal" data-target="#categoriesModal">Categories</button></li>
+                                <li><a href="/category"><button type="button" class="btn float-right ml-1" data-toggle="modal" data-target="#categoriesModal">Categories</button></a></li>
                                 <li><a class="dropdown-item" href="">Users</a></li>
                             </ul>
                         </li>
