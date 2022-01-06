@@ -25,16 +25,17 @@ $(document).ready(function() {
         
 
 
-
+       
         
         $(document).on("click","#deletebtn",function(){
             
-            var span = document.getElementById("delete_name_span");
-            span.textContent = $(this).attr("delete_name");
+            // var span = document.getElementById("delete_name_span");
+            // span.textContent = $(this).attr("delete_name");
 
-            $("#todo_id_txt").val($(this).attr("delete_id"))          
-            
+            // $("#todo_id_txt").val($(this).attr("delete_id"))          
+            alert("Hello! I am an alert box!!");
         })
+
 
         $(document).on("click","#updatebtn",function(){
             
@@ -47,6 +48,8 @@ $(document).ready(function() {
         })
 
         
-
+        $(function(){
+            alert('qweqweqweqw');
+        });
         
 });

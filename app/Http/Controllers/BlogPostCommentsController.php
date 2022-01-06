@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 
 use App\blog_post_comments;
 
-use Illuminate\Support\Facades\DB;
+
 
 class BlogPostCommentsController extends Controller
 {
     public function storecomment(){
 
+        $this->validate(request(),[
+            'comment_txt' => 'required'
+        ]);
 
         $comment  = new blog_post_comments;
 
