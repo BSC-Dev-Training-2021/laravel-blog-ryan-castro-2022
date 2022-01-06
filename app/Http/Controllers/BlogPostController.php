@@ -63,7 +63,7 @@ class BlogPostController extends Controller
         $post->title = request('blog_title_txt');
         $post->descriptions = request('blog_description_txt');
         $post->contents = request('blog_content_txt');
-        $post->created_by = '1';
+        $post->created_by = request('my_info');
         $post->created_at = date("Y-m-d H:i:s");
         $post->updated_at = date("Y-m-d H:i:s");
 

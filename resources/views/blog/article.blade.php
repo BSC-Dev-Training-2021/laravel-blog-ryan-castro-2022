@@ -66,7 +66,7 @@
                                     {{ csrf_field() }}
                                     <div>
                                         <input type="text" name="article_post_id" value="{{$article[0]->id}}" readonly hidden>
-                                        <input type="text" name="user_id" value="2" readonly  hidden>
+                                        <input type="text" name="user_id" value="{{Auth::user()->id }}" readonly  hidden>
                                         <textarea class="form-control mb-2" name="comment_txt" rows="3" placeholder="Join the discussion and leave a comment!" required></textarea>
                                     </div>
                                     <div>

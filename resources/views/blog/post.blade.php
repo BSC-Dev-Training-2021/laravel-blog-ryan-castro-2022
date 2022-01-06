@@ -86,6 +86,8 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="mb-1">Content</label>
                                         <textarea class="form-control mb-1" name="blog_content_txt" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                        
+                                        <input type="text" name="my_info" class="form-control mb-1" value="{{ Auth::user()->id }}" hidden readonly>
                                     </div>
                                     <div class="form-group">
                                         <label class="mb-1 mt-3">Categories</label>
