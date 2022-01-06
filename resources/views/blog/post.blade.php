@@ -19,7 +19,7 @@
     </head>
     <body>
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="#!">My Blog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -39,10 +39,13 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-envelope-o"></i></a></li>
+                        
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
+        @include('include.postnavauth')
+        
         <!-- Page content-->
         <div class="container mt-5">
             <div class="row">
@@ -61,20 +64,33 @@
                                 <form method="post" action="/post">
                                     {{ csrf_field() }}
                                     <div class="form-group">
+                                        @if (count($errors))
+
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>
+                                                        {{$error}}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
                                         <label for="exampleFormControlTextarea1" class="mb-1">Title</label>
-                                        <input type="text" name="blog_title_txt" class="form-control mb-1" required>
+                                        <input type="text" name="blog_title_txt" class="form-control mb-1">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="mb-1">Description</label>
-                                        <textarea class="form-control mb-1" name="blog_description_txt" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                                        <textarea class="form-control mb-1" name="blog_description_txt" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="mb-1">Content</label>
-                                        <textarea class="form-control mb-1" name="blog_content_txt" id="exampleFormControlTextarea1" rows="5" required></textarea>
+                                        <textarea class="form-control mb-1" name="blog_content_txt" id="exampleFormControlTextarea1" rows="5"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label class="mb-1 mt-3">Categories</label>
                                         <div class="row"> 
+                                            @if (!empty($categories))
                                             @foreach ($categories as $category)
                                                 <div class="col-lg-6">
                                                     <div class="form-check">
@@ -85,9 +101,10 @@
                                                     </div>
                                                 </div>
                                             @endforeach
+                                            @endif
                                         </div>
                                     </div>
-                                    
+
                                     <button type="submit" name="submit" class="btn btn-primary mt-5">Post</button>
                                 </form>
                             </section>

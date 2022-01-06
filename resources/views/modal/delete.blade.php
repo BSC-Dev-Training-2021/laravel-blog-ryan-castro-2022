@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal{{$categories[$i]->id}}" role="dialog">
+<div class="modal fade" id="myModaldelete{{$categories[$i]->id}}" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

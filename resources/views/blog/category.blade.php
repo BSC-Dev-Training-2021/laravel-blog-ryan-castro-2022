@@ -5,21 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>My Blog - Home</title>
-        <script src="/js/jquery-3.6.0.min.js"></script>
-        <script src="/js/app.js"></script>
-        <script src="/js/bootstrap.bundle.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
+        <title>Blog Post - Start Bootstrap Template</title>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="bootstrap.bundle.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="/css/styles.css" rel="stylesheet" />
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link href="css/font-awesome.min.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="#!">My Blog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -33,13 +32,19 @@
                     </ul>
                 </div>
             </div> 
-        </nav>
+        </nav> --}}
+        @include('include.navauth')
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div>
+                        @if ($nocat == 0)
+                            <label class="alert alert-danger">Please Create Category First To Start The Project</label>
+                            @endif
+                        <br />
                         <form method="post" class="input-group input-group-lg mt-5" action="/categorycreate">
                             {{ csrf_field() }}
+                            
                             <input type="text" name="category_txt" class="form-control" aria-label="Text input with segmented dropdown button">
                             <div class="input-group-append">
                                 <button type="submit" name="create_category" class="btn btn-primary mt-1">Create Category</button>
@@ -53,30 +58,25 @@
                     <!-- Category section-->
                     <section>
                         <ul class="list-group list-group-flush">
-                            @for ($i = 0; $i < count($categories); $i++)  
-                            <li class="list-group-item">
-                                {{$categorycount[$i]['total']}}
-                                
+                            <tbody>
+                                @for ($i = 0; $i < count($categories); $i++)  
                             
-                                <button type="button"  class="btn btn-light fa fa-check float-right ml-5" data-toggle="modal" data-target="#deleteConfirmModal"></button>
-
-                                {{ $categories[$i]->name }}
-
-                                @if ($categorycount[$i]['total'] == 0)
-
-                                {{-- <a onclick="return confirm('Are you sure you want to Delete {{ $categories[$i]->name }} Category?');"  href="/deletecategory/{{$categories[$i]->id}}">                             --}}
-                                {{-- <button type="button" id="deletebtn"  delete_name="{{ $categories[$i]->name }}" delete_id="{{$categories[$i]->id}}" class="btn btn-light fa fa-trash-o float-right ml-1" data-toggle="modal" data-target="#modaldelete" data-dismiss="modal"></button>
-                                </a> --}}
-
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$categories[$i]->id}}">Delete</button>
-
-                                {{-- <button type="button" id="deletebtn" todo_id="{{$categories[$i]->id}}" class="btn btn-light fa fa-trash-o float-right ml-5" data-toggle="modal" data-target="#deleteConfirmModal"></button>
-                                 --}}
-                                @endif 
-                                
-                            </li>
-                            @include('modal.delete')
-                            @endfor
+                                <li class="list-group-item">
+                                    
+                                    <tr> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalupdate{{$categories[$i]->id}}">Update</button></td>
+                                    
+                                    <td>{{ $categories[$i]->name }}</td>
+                                    
+                                    @if ($categorycount[$i]['total'] == 0)
+                                    
+                                    <td><button type="button" class="btn btn-light fa fa-trash-o float-right ml-1" data-toggle="modal" data-target="#myModaldelete{{$categories[$i]->id}}"></button></td>
+                                    @endif 
+                                    
+                                </li>
+                                @include('modal.delete')
+                                @include('modal.update')
+                                @endfor
+                            </tbody>
                         </ul>
                     </section>
                     <br />

@@ -15,22 +15,40 @@ class CategoryTypesController extends Controller
         
         $categories = category_types::show();
 
-        return view('blog/post',compact('categories')); 
+        if (count($categories) == 0){
+            return redirect('category');
+        }
+        else
+        {
+            return view('blog/post',compact('categories')); 
+        }
+
     } 
 
     public function category(){
         
         $categories = category_types::show();
 
+        if (!empty($categories)){
+
         for($a=0; $a < count($categories); $a++){
 
-            
             $count = blog_post_categories::categories($categories[$a]->id);
             // $categorycount[$a]->number_post = count($count);
             $categorycount[$a]['total'] = count($count);
         }
+        $categorycount[$a]['total'] = 0;
+        }
 
-        return view('blog/category',compact('categories','categorycount')); 
+        if (count($categories) == 0){
+            $nocat = 0;
+        }
+        else
+        {
+            $nocat = 1;
+        }
+
+        return view('blog/category',compact('categories','categorycount','nocat')); 
     } 
 
     public function storecategory(){
@@ -58,6 +76,23 @@ class CategoryTypesController extends Controller
 
 
         DB::table('category_types')->where('id', $id)->delete();
+
+        return redirect('category');
+    }
+
+    public function update(Request $request,$id){
+
+        
+
+        $this->validate($request,[
+            'name' => 'required'
+        ]);
+
+        $cate = category_types::find($id);
+
+        $cate->name = $request->input('name');
+
+        $cate->save();
 
         return redirect('category');
     }

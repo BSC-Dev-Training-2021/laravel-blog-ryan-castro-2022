@@ -13,35 +13,52 @@ use App\blog_post_comments;
 class BlogPostController extends Controller
 {
     public function shows($page){
-        
         $post = blog_post::show($page);
-        $countpost = blog_post::getpostnumber();
 
-        $getpage = $page+1;
-        $pagenow = $page+1;
-        $backpage = $page-1;
-        if ($backpage < 1) {
-           $backpage = 0;
-        }
-       
-        $total = count($countpost) / 5;
-       
-        if ($total > 1) {
-           $totalpage = ceil($total) - 1;
-        }
-       
-        if (ceil($total) == $getpage) {
-            $getpage = $totalpage;
-        }
+        if (count($post) == 0){
 
+            return redirect('create'); 
+
+         }
+            else
+            {
+            $post = blog_post::show($page);
+            $countpost = blog_post::getpostnumber();
+
+            $getpage = $page+1;
+            $pagenow = $page+1;
+            $backpage = $page-1;
+            if ($backpage < 1) {
+            $backpage = 0;
+            }
+        
+            $total = count($countpost) / 5;
+        
+            if ($total > 0) {
+                $totalpage = ceil($total) - 1;
+            }
+        
+            if (ceil($total) == $getpage) {
+                $getpage = $totalpage;
+            }
+
+            
         return view('blog/index',compact('post','backpage','totalpage','getpage','pagenow')); 
+        }
     } 
 
  
 
     public function store(){
+
+        $this->validate(request(),[
+            'categories' => 'required',
+            'blog_title_txt' => 'required',
+            'blog_description_txt' => 'required',
+            'blog_content_txt' => 'required'
+        ]);
+
         $post  = new blog_post;
-        
 
         $post->title = request('blog_title_txt');
         $post->descriptions = request('blog_description_txt');
@@ -51,8 +68,6 @@ class BlogPostController extends Controller
         $post->updated_at = date("Y-m-d H:i:s");
 
         $post->save();
-
-
 
         $getid = $post->id;
         $cat = request('categories');
@@ -68,6 +83,7 @@ class BlogPostController extends Controller
                 ]
             );
         }
+
 
         return redirect('post/0');
     }
