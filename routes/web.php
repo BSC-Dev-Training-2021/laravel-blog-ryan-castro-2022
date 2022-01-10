@@ -33,7 +33,7 @@ Route::get('/create', [CategoryTypesController::class, 'shows']);
 Route::post('/post', 'BlogPostController@store');
 
 
-Route::get('/post/{page}', [BlogPostController::class, 'shows']);
+Route::get('/post/{all}/{page}', [BlogPostController::class, 'shows']);
 
 
 Route::post('/article', 'BlogPostCommentsController@storecomment');

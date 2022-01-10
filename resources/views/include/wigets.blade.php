@@ -16,18 +16,16 @@
             <div class="row">
                 <div class="col-sm-6">
                     <ul class="list-unstyled mb-0">
-                        <li><a href="#!">Web Design</a></li>
-                        <li><a href="#!">HTML</a></li>
-                        <li><a href="#!">Freebies</a></li>
+                        
+                        
+                        @for ($i = 0; $i < count($categories); $i++)
+                             @if ($items[$i] > 0)
+                                <li><a href="/post/{{$categories[$i]->id}}/0">{{$categories[$i]->name}}</a></li>
+                            @endif
+                        @endfor
                     </ul>
                 </div>
-                <div class="col-sm-6">
-                    <ul class="list-unstyled mb-0">
-                        <li><a href="#!">JavaScript</a></li>
-                        <li><a href="#!">CSS</a></li>
-                        <li><a href="#!">Tutorials</a></li>
-                    </ul>
-                </div>
+
             </div>
         </div>
     </div>

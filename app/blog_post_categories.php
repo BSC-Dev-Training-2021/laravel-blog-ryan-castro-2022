@@ -24,5 +24,14 @@ class blog_post_categories extends Model
         ->get();
     }
 
+    public static function getcategorybypost($id){
+        return DB::table('blog_post_categories')
+        ->select('category_id')
+        ->where('category_id','=',$id)
+        ->get();
+    }
+
+
+
 
 }

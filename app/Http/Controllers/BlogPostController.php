@@ -7,22 +7,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\blog_post;
-use App\blog_post_comments;
-
+use App\category_types;
+use App\blog_post_categories;
 
 class BlogPostController extends Controller
 {
-    public function shows($page){
-        $post = blog_post::show($page);
+    public function shows($all,$page){
+
+        if ($all == "all"){
+            $post = blog_post::show($all,$page);
+        }
+        else {
+            $post = blog_post::showwithcategory($all,$page);
+        }
 
         if (count($post) == 0){
-
-            return redirect('create'); 
-
+            
+           
+            return redirect('create');
          }
             else
             {
-            $post = blog_post::show($page);
+  
             $countpost = blog_post::getpostnumber();
 
             $getpage = $page+1;
@@ -42,8 +48,15 @@ class BlogPostController extends Controller
                 $getpage = $totalpage;
             }
 
-            
-        return view('blog/index',compact('post','backpage','totalpage','getpage','pagenow')); 
+        $categories = category_types::show();
+
+        $items = array();
+        for ($a = 0; $a < count($categories); $a++){
+            $postnum = blog_post_categories::getcategorybypost($categories[$a]->id);
+            $items[$a] = count($postnum);
+        }
+
+        return view('blog/index',compact('post','backpage','totalpage','getpage','pagenow','categories','items')); 
         }
     } 
 
@@ -84,8 +97,7 @@ class BlogPostController extends Controller
             );
         }
 
-
-        return redirect('post/0');
+        return redirect('post/all/0');
     }
 
 }

@@ -34,7 +34,7 @@
             </div> 
         </nav> --}}
         @include('include.navauth')
-        {{ Auth::user()->id }}
+        
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
