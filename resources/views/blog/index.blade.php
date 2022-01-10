@@ -78,19 +78,26 @@
                     </div>
 
                     <!-- Pagination-->
+                    
                     <nav aria-label="Pagination">
                         <hr class="my-0" />
                         <ul class="pagination justify-content-center my-4">
-                            <li class="page-item"><a class="page-link" href="0" tabindex="-1" aria-disabled="true">Newer</a></li>
+                            <li class="page-item"><a class="page-link" href="/post/{{$all}}/0" tabindex="-1" aria-disabled="true">Newer</a></li>
                             
-                            <li class="page-item"><a class="page-link" href="{{$backpage}}">Back</a></li>
+                            <li class="page-item"><a class="page-link" href="/post/{{$all}}/{{$backpage}}">Back</a></li>
 
-                            <li class="page-item"><a class="page-link" readonly>{{$pagenow}}</a></li>
-
-                            <li class="page-item"><a class="page-link" href="{{$getpage}}">Next</a></li>
-                            <li class="page-item"><a class="page-link" href="{{$totalpage}}">Older</a></li>
+                            <li class="page-item"><a class="page-link" readonly>Page {{$pagenow}}</a></li>
+                    @if (count($post) > 4)
+                            <li class="page-item"><a class="page-link" href="/post/{{$all}}/{{$getpage}}">Next</a></li>
+                            <li class="page-item"><a class="page-link" href="/post/{{$all}}/{{$totalpage}}">Older</a></li>
                         </ul>
+                    @else
+                            <li class="page-item"><a class="page-link" ready-only>Next</a></li>
+                            <li class="page-item"><a class="page-link" ready-only>Older</a></li>
+                        </ul>
+                    @endif
                     </nav>
+                   
                 </div>
                 <!-- Side widgets-->
                 @include('include.wigets')
