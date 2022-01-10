@@ -43,7 +43,7 @@ class BlogPostController extends Controller
                 $totalpage = ceil($total) - 1;
             }
         
-            if (ceil($total) == $getpage) {
+            if (ceil($total) <= $getpage) {
                 $getpage = $totalpage;
             }
 
@@ -55,7 +55,7 @@ class BlogPostController extends Controller
             $items[$a] = count($postnum);
         }
 
-        return view('blog/index',compact('post','backpage','totalpage','getpage','pagenow','categories','items')); 
+        return view('blog/index',compact('post','backpage','totalpage','getpage','pagenow','categories','items','all')); 
         }
     } 
 
