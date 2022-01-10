@@ -20,7 +20,12 @@ class CategoryTypesController extends Controller
         }
         else
         {
-            return view('blog/post',compact('categories')); 
+            $items = array();
+            for ($a = 0; $a < count($categories); $a++){
+                $postnum = blog_post_categories::getcategorybypost($categories[$a]->id);
+                $items[$a] = count($postnum);
+            }
+            return view('blog/post',compact('categories','items')); 
         }
 
     } 

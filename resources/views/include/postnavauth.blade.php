@@ -15,7 +15,7 @@
             
 
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/post/0">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/post/all/0">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
                 <li class="nav-item"><a class="nav-link active" href="/create">Post</a></li>

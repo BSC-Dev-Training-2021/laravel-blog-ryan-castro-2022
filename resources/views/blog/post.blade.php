@@ -63,11 +63,21 @@
                             <section class="mb-5">
                                 <form method="post" action="/post">
                                     {{ csrf_field() }}
-                                    <div class="form-group">
-                                        @if (count($errors))
 
+                                    @if (!empty($errorx))
+                                    <div class="form-group">
                                         <div class="alert alert-danger">
                                             <ul>
+                                                <li>{{$errorx}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    <div class="form-group">
+                                        @if (!empty($errors))
+                                        @if (count($errors))
+                                        <div class="alert alert-danger">
+                                            <ul>                                              
                                                 @foreach ($errors->all() as $error)
                                                     <li>
                                                         {{$error}}
@@ -75,6 +85,7 @@
                                                 @endforeach
                                             </ul>
                                         </div>
+                                        @endif
                                         @endif
                                         <label for="exampleFormControlTextarea1" class="mb-1">Title</label>
                                         <input type="text" name="blog_title_txt" class="form-control mb-1">
@@ -115,7 +126,8 @@
                     </div>
                 </div>
                 <!-- Side widgets-->
-                <div class="col-lg-4">
+                @include('include.wigets')
+                {{-- <div class="col-lg-4">
                     <!-- Search widget-->
                     <div class="card mb-4">
                         <div class="card-header">Search</div>
@@ -127,7 +139,8 @@
                         </div>
                     </div>
                     <!-- Categories widget-->
-                    <div class="card mb-4">
+                    
+                    {{-- <div class="card mb-4">
                         <div class="card-header">Categories</div>
                         <div class="card-body">
                             <div class="row">
@@ -147,13 +160,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Side widget-->
-                    <div class="card mb-4">
+                    {{-- <div class="card mb-4">
                         <div class="card-header">Side Widget</div>
                         <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
