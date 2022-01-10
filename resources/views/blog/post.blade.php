@@ -63,16 +63,6 @@
                             <section class="mb-5">
                                 <form method="post" action="/post">
                                     {{ csrf_field() }}
-
-                                    @if (!empty($errorx))
-                                    <div class="form-group">
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                <li>{{$errorx}}</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    @endif
                                     <div class="form-group">
                                         @if (!empty($errors))
                                         @if (count($errors))

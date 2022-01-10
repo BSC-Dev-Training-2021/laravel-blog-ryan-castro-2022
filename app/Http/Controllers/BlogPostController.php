@@ -22,8 +22,7 @@ class BlogPostController extends Controller
         }
 
         if (count($post) == 0){
-            
-           
+
             return redirect('create');
          }
             else
